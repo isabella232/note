@@ -10,7 +10,7 @@
 Calendar calendar=Calendar.getInstance();
 ```
 
-## 设置时间 calendar.set();
+### 设置时间 calendar.set();
 
 ```java
     calendar.set(int year,int month); //年月
@@ -19,7 +19,7 @@ Calendar calendar=Calendar.getInstance();
     calendar.set(int year,int month,int date,int hour,int min,int sec); //年月日时分秒
 ```
 
-## 获取时间 calendar.get()
+### 获取时间 calendar.get()
 
 ```java
     calendar.get(int type); //type识别符号
@@ -36,7 +36,7 @@ Calendar calendar=Calendar.getInstance();
     public static final int DAY_OF_YEAR = 6;  //  一年当中的第几天
     public static final int DAY_OF_WEEK = 7;  //  一周当中的第几天--------周日表示第一天 周日=1
     public static final int AM_PM = 9;  ------------------------------------------------------
-    public static final int HOUR = 10;    //  时间
+    public static final int HOUR = 10;    //  12小时制
     public static final int HOUR_OF_DAY = 11; //  24小时制
     public static final int MINUTE = 12;  //  分钟
     public static final int SECOND = 13;  //  秒
@@ -66,4 +66,30 @@ Calendar calendar=Calendar.getInstance();
     public static final int UNDECIMBER = 12; //  周日
     public static final int AM = 0; //  上午
     public static final int PM = 1; //  下午
+```
+
+## methods
+
+```java
+//  向前向后推进时间
+public void add(int field,int amount)
+
+//  such as
+Calendar calendar=Calendar.getInstance(); //  当前年为2018
+calendar.add(Calendar.YEAR,-3); //  当前年为2015，以此类推
+
+//  清空时间到 1970--
+public void clear()
+public void clear(int field)  //  作用到具体字段
+
+//  获取字段可取的最大最下值
+public int getActualMaximum(int field)
+public int getActualMinumum(int field)
+
+//  设置哪天为每周的第一天 美国为周日i 我国为周一
+public void	setFirstDayOfWeek(int value)
+
+//  同add
+public abstract void roll(int field,boolean flag) //true field + 1，false field -1;
+public abstract void roll(int field,amount s) //  同add，超过上限下线不会改变其他字段的值
 ```
