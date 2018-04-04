@@ -79,7 +79,7 @@ app:collapsedTitleTextAppearance=”@style/Text1”折叠时title的样式里面
 
 + app:layout_scrollFlags="scroll"
   + scroll
-    + 滚动控件先滚动到顶部，才会触发设置该属性控件的动作
+    + 所有想滚动出屏幕的view都需要设置这个flag，没有设置这个flag的view将被固定在屏幕顶部
   + snap
     + 配合scroll使用 -snap|scroll
     + 要么该控件全部显示，要么全部隐藏
