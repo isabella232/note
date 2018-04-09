@@ -85,7 +85,7 @@ app:collapsedTitleTextAppearance=”@style/Text1”折叠时title的样式里面
     + 要么该控件全部显示，要么全部隐藏
   + entersAlways
     + 配合scroll一起使用 scroll|enterAlways
-    + 先触发设置属性的动作，之后才会触发滚动控件的滚动行为
+    + 上拉隐藏，下拉总是先显示该控件
   + enterAlwaysCollapsed
     + enterAlways的附加属性，配合scroll，enterAlways和layout_height,minHeight一起使用 - scroll|enterAlways|enterAlwaysCollapsed
     + 下拉时先触发该控件的滚动，直至完成behevior，接着滚动控件开始执行滚动
@@ -95,7 +95,7 @@ app:collapsedTitleTextAppearance=”@style/Text1”折叠时title的样式里面
     + 下拉的时候，该控件先执行滚动，直到高度达到minHeight的值，接着执行滚动控件的滚动动作
     + 上拉时候，先执行滚动控件的滚动，直到滚动到达最顶部，接着执行该控件的滚动行为，直到到达页面顶部
 
-## 控件的属性 layout_behavior
+#### 控件的属性 layout_behavior
 
 ```java
 
@@ -121,4 +121,4 @@ public class EasyBehavior extends CoordinatorLayout.Behavior<TextView> {
     }
 }
 ```
-
+> 当scrollView里面嵌套listView列表的时候，会把滚动事件消费，导致coordinatorLayout不能派发事件
