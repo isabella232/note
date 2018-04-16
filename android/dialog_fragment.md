@@ -1,8 +1,9 @@
 # dialog_fragment
 
-## 设置进出场动画---在onCreateView里面执行
+## 设置进出场动画---在 onCreateView 里面执行
 
-1. 在xml里面定义
+1.  在 xml 里面定义
+
 ```xml
 <style name="TopToBottomAnim" parent="android:Animation">
     <!-- 进场动画 -->
@@ -11,13 +12,15 @@
     <item name="android:windowExitAnimation">@anim/bottom_to_top</item>
 </style>
 ```
-2. 在java代码里面设置
+
+2.  在 java 代码里面设置
+
 ```java
 //  设置动画
 getDialog().getWindow().setWindowAnimations(R.style.TopToBottomAnim);
 ```
 
-## 设置位置和大小--在onStart里面
+## 设置位置和大小--在 onStart 里面
 
 ```java
 //  位置
@@ -46,3 +49,12 @@ getDialog().getWindow().setWindowAnimations(R.style.TopToBottomAnim);
  getDialog().getWindow().setLayout(w, WindowManager.LayoutParams.WRAP_CONTENT);
 ```
 
+## dialogFragment 里面弹出 keyborad
+
+```java
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+    }
+```
