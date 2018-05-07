@@ -28,8 +28,19 @@ Servlet 运行于支持 Java 的应用服务器中（tomcat）。从原理上讲
 
 ## 问题
 
-1.  不知道为什么在 web.xml 里面配置 servlet 出现 404，用注解就可以。 ------2018-04-26
-2.  在浏览器里面执行 get 方法 会调用两次 servlet 一次是 option 请求一次是其他 get，post 请求--，尝试用其他调试工具--postman 谷歌扩展工具
+* 不知道为什么在 web.xml 里面配置 servlet 出现 404，用注解就可以。 ------2018-04-26
+* 在浏览器里面执行 get 方法 会调用两次 servlet 一次是 option 请求一次是其他 get，post 请求--，尝试用其他调试工具--postman 谷歌扩展工具
+* mysql The server time zone value 异常
+
+> url=jdbc:mysql://localhost:3306/test?useUnicode=true$characterEncoding=utf8
+> 改为
+> url=jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+
+* Java 连接 Mysql 数据库警告：Establishing SSL connection without server's identity verification is not recommend
+
+> 原因是 MySQL 在高版本需要指明是否进行 SSL
+> 连接在 mysql 连接字符串 url 中加入 ssl=true 或者 false 即可，如下所示。
+> url=jdbc:mysql://127.0.0.1:3306/framework?characterEncoding=utf8&useSSL=true
 
 ## servlet 的生命周期
 
