@@ -24,7 +24,7 @@ getDialog().getWindow().setWindowAnimations(R.style.TopToBottomAnim);
 
 ```java
 //  位置
-        Window window = t.getDialog().getWindow();
+        Window window = getDialog().getWindow();
         WindowManager.LayoutParams params = window.getAttributes();
         switch (position) {
             case 1:
