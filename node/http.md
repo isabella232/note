@@ -1,6 +1,6 @@
 # http
 
-# http.request(opts)
+## http.request(opts)
 
 ```javascript
 let opt={
@@ -10,4 +10,14 @@ let opt={
   procotol:'http',   // default http
   port:'80',  // default 80
 }
+```
+
+## http.createServer(callFunc(req,res))
+
+```javascript {.line-numbers}
+const http=require('http);
+const server=http.createServer((req,res)=>{
+
+})
+server.listen(port)
 ```

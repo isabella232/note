@@ -52,6 +52,14 @@ drop user 用户名@'%';
 drop user 用户名@ localhost;
 ```
 
+## 常用查询
+
+```sql
+
+-- 常用引擎
+show engines;
+```
+
 ## 操作语句
 
 ```xml
@@ -66,6 +74,8 @@ drop user 用户名@ localhost;
 <sql>drop database name</sql>
 
 <!-- 数据表 -->
+<!-- 显示表结构 -->
+<sql>desc table_name</sql>
 <!-- 判断数据表存在与否 -->
 <sql>drop table if exits tableName</sql>
 <!-- 新增数据表 -->
