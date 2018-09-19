@@ -123,3 +123,13 @@ Aborting
 ```
 
 > 针对上面的问题，需要先commit或者隐藏掉本地的修改，才可以git pull最新的version。当commit之后，git pull，会自动的合并，并且本地的修改和关联库的修改都会体现
+
+### unable to auto-detect email address
+
+> 找到config文件加入
+
+```git
+[user]
+  email=xxx@163.com
+  name=xxxx
+```

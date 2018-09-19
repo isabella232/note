@@ -57,6 +57,14 @@ desc table_name
 show table table_name
 ```
 
+## 常用查询
+
+```sql
+
+-- 常用引擎
+show engines;
+```
+
 ## 操作语句
 
 ```xml
@@ -71,6 +79,8 @@ show table table_name
 <sql>drop database name</sql>
 
 <!-- 数据表 -->
+<!-- 显示表结构 -->
+<sql>desc table_name</sql>
 <!-- 判断数据表存在与否 -->
 <sql>drop table if exits tableName</sql>
 <!-- 新增数据表 -->
