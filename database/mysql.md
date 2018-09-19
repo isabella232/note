@@ -50,6 +50,11 @@ drop database testDB;
 --删除权限
 drop user 用户名@'%';
 drop user 用户名@ localhost;
+
+-- 查看表结构
+desc table_name
+-- 查看生成表的sql语句
+show table table_name
 ```
 
 ## 操作语句

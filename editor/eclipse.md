@@ -1,5 +1,17 @@
 # eclipse 常见的问题
 
+## 快捷键
+
+- import 包
+  - ctrl+shift+o
+- override
+  - ctrl+o
+- 查看接口实现类
+  - 选中类，然后 ctrl+t
+- xml 查看属性
+  - alt+/
+- 返回贯标上一个位置 - alt+键盘左键
+
 ## 配置 tomcat
 
 tomcat 的配置步骤
@@ -35,17 +47,6 @@ tomcat 的配置步骤
 ## 关于 Creation of element failed(myEclipse)错误
 
 可能是没有新建 xml 文件
-
-## 快捷键
-
-- import 包
-  - ctrl+shift+o
-- override
-  - ctrl+o
-- 查看接口实现类
-  - ctrl+t
-- xml 查看属性
-  - alt+/
 
 ## 变量名称自动加类型的解决方法
 
