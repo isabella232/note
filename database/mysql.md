@@ -32,11 +32,16 @@ delete from user where password=''; // 删除系统账户中密码为空的用�
 
 ## 结构语句
 
+[mysql日志系统](https://segmentfault.com/a/1190000016642320)
+
 ```sql
 -- 查看引擎
 show engines
 -- 查看默认引擎
 show variables like '%storage_engine%'
+show variables like '%general%'
+-- 设置配置值
+set global variablesName=value
 ```
 
 ## 定义语句
@@ -66,14 +71,6 @@ desc table_name
 show warnings
 -- 查看生成表的sql语句
 show table table_name
-```
-
-## 常用查询
-
-```sql
-
--- 常用引擎
-show engines;
 ```
 
 ## 操作语句
@@ -109,6 +106,11 @@ show engines;
 <sql>update tableName set columnName='value' where columnName='condition'</sql>
 <!-- 删除数据 如果条件为空 删除整个数据表内容 -->
 <sql>delete from tableName where columnName='condition'</sql>
+
+<!-- 设置自增键的起始值 -->
+<sql>auto_increment=1001</sql> 
+<!-- 表结构定义 设置表引擎和编码方式 -->
+<sql>create table test(name type ext...) engine=innodb charest=otf8</sql>
 ```
 
 ## 视图
@@ -122,6 +124,9 @@ create view viewName sql statement
 //  使用视图
 select * from viewName;
 ```
+
+## 索引
+
 
 ## 锁
 
@@ -178,7 +183,7 @@ rollback
 | 可重复读（repeatable read）  | 否   | 否   | 是         |
 | 串行化（serializable）       | 否   | 否   | 否         |
 
-#### 读未提交
+#### 读未提交(RUC)
 
 每个事务某条 sql 语句提交的数据都会在数据库中得到体现，因此当某个事务操作数据之后其他事务读取了操作过的数据，之后该事务由于某种原因发生回滚的时候，导致其他事务读取的数据的脏值。
 
@@ -186,7 +191,7 @@ rollback
 - 事务 A 更新了数据没有提交，事务 B 读取了数据，之后事务 A 再次更新数据，事务 B 再次读取数据，两次读取的数据不一致。（不可重复读）
 - 事务 A 读取数据没结果没有提交，事务 B 插入一条新数据，事务 A 再次读取数据，发现新数据。（幻读）
 
-#### 读已提交
+#### 读已提交(RC)
 
 每个事务色 sql 语句操作的变化都是实时的发生在数据库里面的，丙炔最后的提交了事务。这里不会发生脏读，因为事务 A 是提交了所在事务的所有。导致数据没有失真。
 
@@ -194,7 +199,7 @@ rollback
 - 事务 A 读取了数据没有提交，发现没有记录，事务 B 插入一条新数据提交，事务 A 再次读物数据，发现新纪录。（幻读）
 - 同上
 
-#### 可重复读
+#### 可重复读(RR)
 
 开始事务之后，是不是所在事务会保存一张开始事务时候的快照？每次读取数据都是从这个快照里面的数据中读取，事务之间的操作不会相互干扰。但是当两个事务先后都提交了的话，就会发生冲突，需要怎么去结局？如果是用数据库里面的值做迭代修改，事务之间的修改会相互影响吗？
 
@@ -217,8 +222,11 @@ rollback
 ## 优化
 
 [MySQL优化的几点总结](https://segmentfault.com/a/1190000016486789)
+[SQL语句执行过程详解](https://juejin.im/post/5b7036de6fb9a009c40997eb)
 
 ## 分表
+
+[分表分库](https://segmentfault.com/a/1190000016475827)
 
 ### 水平分表
 
