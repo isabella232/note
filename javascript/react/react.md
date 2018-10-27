@@ -34,3 +34,14 @@ testChange=()=>{
 }
 
 ```
+
+## 模块话css
+
+1. css文件名，[filename].module.css
+2. 引用，import style from 'css_path'
+3. 使用，className={style.className}
+
+### sass
+
+1. npm install --save node-sass or yarn add node-sass
+2. 格式化 - install plugin 【Beautify css/sass/scss/less】
