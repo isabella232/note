@@ -258,3 +258,19 @@ rollback
   + yyyy-MM-dd hh-mm-ss
 + timestamp
   + yyyyMMddhhmmssS
+
+## 函数
+
+### 判断为空
+
+> ifnull(expr1,expr2)
+
+假如expr1不为NULL，则 IFNULL() 的返回值为expr1; 否则其返回值为 expr2。IFNULL()的返回值是数字或是字符串，具体情况取决于其所使用的语境。
+
+> isnull(expr1)
+
+如expr 为null，那么isnull() 的返回值为 1，否则返回值为 0。 
+
+> nullif(expr1,expr2)
+
+如果expr1 = expr2 成立，那么返回值为NULL，否则返回值为expr1。这和CASE WHEN expr1 = expr2 THEN NULL ELSE expr1 END相同。 

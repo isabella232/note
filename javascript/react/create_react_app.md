@@ -4,5 +4,59 @@
 
 ## 环境修改
 
-1. 端口
+1. 端口，默认端口为3000
   1. 设置环境变量 PORT=8070 
+
+## install chrome-react-devtool
+
+[安装过程](https://blog.csdn.net/wp_boom/article/details/79011177)
+
+1. 克隆git包
+  1. git clone https://github.com/facebook/react-devtools.git
+2. 安装依赖
+  1. npm install
+3. 构建
+  1. npm run build:extension:chrome 
+
+## install redux-devtool
+
+[官方地址](https://github.com/zalmoxisus/redux-devtools-extension)
+
+1. git clone https://github.com/zalmoxisus/redux-devtools-extension
+2. npm i && npm run build:extension
+3. 加载扩展包 ./build/
+4. usage
+  1. 在创建store时候需要添加本地依赖
+  2. createStore(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+## 兼容包
+
+> 目前只包含如下兼容包，如果需要其他运行时支持包，则需要另外导入
+
+- Object.assign() via object-assign.
+- Promise via promise.
+- fetch() via whatwg-fetch.
+
+## 修改spa的title
+
+[react-helmet.git](https://github.com/nfl/react-helmet)
+
+1. npm install --save react-helmet
+2. usage
+  1. import Helmet from 'react-helmet'
+  2. in render function
+    1. <Helmet><title>your title</title><Helmet/>
+
+## 分包加载
+
+[如何使用？](https://serverless-stack.com/chapters/code-splitting-in-create-react-app.html)
+
+## 构建应用
+
+> 是否生成sourcemap？
+
+设置环境变量 GENERATE_SOURCEMAP =false
+
+> 设置路径？
+
+设置环境变量 PUBLIC_URL=./，会根据这个来生成html文件

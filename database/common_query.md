@@ -36,7 +36,7 @@ select t1.companyid,t1.age from test t1 left join test t2 on t1.companyid=t2.com
 ```
 
 ## 选取分组符合条件的行
-
+d
 ```sql
 -- 选取分组中前2的值 使用上面的表
 
