@@ -8,14 +8,32 @@
 
 ```javascript {.line-numbers}
 const component = {
-  beforeCreate() {},
-  created() {},
-  beforeMount() {},
-  mounted() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {}
+  beforeCreate() {
+    //  初始化事件和生命周期钩子
+  },
+  created() {
+    //  data和props初始化完成，此时可以对数据进行操作，data在props之后初始化
+    //  如果props传输进来的数据后不在跟父组件关联，可以初始化一个本地变量
+    //  如果需要转换数据额结构，则可以生成一个计算属性
+  },
+  beforeMount() {
+    //  组件挂载至dom树之前调用
+  },
+  mounted() {
+    //  组件已经挂载在dom树，此时可以访问dom节点
+  },
+  beforeUpdate() {
+    //  当数据改变导致组件更新之前调用
+  },
+  updated() {
+    //  组件更新完成之后调用
+  },
+  beforeDestroy() {
+    //  卸载组件调用，v-if、切换路由等
+  },
+  destroyed() {
+    //  组件卸载完成
+  }
 };
 ```
 
