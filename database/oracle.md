@@ -1,5 +1,20 @@
 # oracle
 
+## 常用数据操作语句
+
+```sql
+-- 定义自增字段
+-- Create sequence
+-- 调用 APP_SECKILL_ID.nextval,会返回下一个自增值
+create sequence APP_SECKILL_ID
+minvalue 1
+maxvalue 9999999
+start with 1000114
+increment by 1
+nocache;
+
+```
+
 ## 函数
 
 [引用地址](https://www.cnblogs.com/bbliutao/archive/2017/11/08/7804263.html)
@@ -23,38 +38,63 @@ nvl(str1,str2)
 nvl2(str1,str2,str3)
 ```
 
+### 判断 null
+
+```sql
+-- 如果var1 isnull 返回 var2，否则返回var1
+nvl(var1,var2)
+
+-- 如果var1 isnull返回var3，否则返回var2
+nvl2(var1,var2,var3)
+```
+
+### 聚合函数
+
+==聚合函数不能嵌套使用==
+
+```sql
+--  可以配合group by分组语法使用
+--  如果不配合group by使用，只会返回一行！
+--  返回记录的行数，行值为null的不会统计在内
+count(colnumName)
+--  返回指定行的总值
+sum(colnumName)
+--  返回指定行的平均值
+avg(colnumName)
+```
+
 ## 条件判断
 
 ### when then else end
 
 ```sql
---简单Case函数  
+--简单Case函数
 
-CASE sex  
-WHEN '1' THEN '男'  
-WHEN '2' THEN '女'  
-ELSE '其他' END  
+CASE sex
+WHEN '1' THEN '男'
+WHEN '2' THEN '女'
+ELSE '其他' END
 
---Case搜索函数  
+--Case搜索函数
 
 CASE
-WHEN sex = '1' THEN '男'  
-WHEN sex = '2' THEN '女'  
-ELSE '其他' END  
+WHEN sex = '1' THEN '男'
+WHEN sex = '2' THEN '女'
+ELSE '其他' END
 ```
 
-### if  else
+### if else
 
 ```sql
 -- 配合聚合函数
 -- 如果返回不是空则集合函数加1否则不做处理
-select sum(case sex where '1' then 1 else null end) 男 
+select sum(case sex where '1' then 1 else null end) 男
 
 -- 如果value=if1 则值为then1 ...
 DECODE(VALUE, IF1, THEN1, IF2, THEN2, IF3, THEN3, ......, OTHER);
 
 --
-if a=... then 
+if a=... then
 ...
 end if;
 
@@ -63,4 +103,4 @@ if a=... then
 elsif a=... then    --这里是elsif，不是else if.
 ...
 end if;
-``` 
+```

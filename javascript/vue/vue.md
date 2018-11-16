@@ -37,6 +37,30 @@ const component = {
 };
 ```
 
+## 数据侦测
+
+```javascript
+/**
+ * @param expOrFn 点表达式或者计算函数==> data(){return {b:{c:1}}} this.a.b/function(){return this.a.b+1}
+ * @param cb 当值干煸时候的回调函数
+ * @param options 附加参数 deep/immediate
+ * */
+vm.$watch(expOrfn, cb, options);
+
+component = {
+  computed: {
+    key1: 'methods', //  methods定义的方法
+    key2: {
+      //  如果是对象，需要定义handler方法
+      handler() {},
+      deep: true, //  附加参数
+      immediate: true
+    },
+    key3: [] //  如果是数组 [Object]==key2 [String]==key1
+  }
+};
+```
+
 ## 循环
 
 ```html {.line-numbers}

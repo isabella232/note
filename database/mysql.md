@@ -25,7 +25,7 @@ delete from user where password=''; // 删除系统账户中密码为空的用�
 4.  再开一个 DOS 窗口（因为刚才那个 DOS 窗口已经不能动了），转到 mysql\bin 目录。
 5.  输入 mysql 回车，如果成功，将出现 MySQL 提示符 >。
 6.  连接权限数据库： use mysql; 。
-7.  改密码：update user set password=password("password") where user="root";（别忘了最后加分号）| update user set authentication_string=password('newpassword') where user='root';
+7.  改密码：update user set password=password("password") where user="root";| update user set authentication_string=password('newpassword') where user='root';
 8.  刷新权限（必须步骤）：flush privileges;　。
 9.  退出 quit。
 10. 注销系统，再进入，使用用户名 root 和刚才设置的新密码登录。
