@@ -6,6 +6,7 @@
 -- 定义自增字段
 -- Create sequence
 -- 调用 APP_SECKILL_ID.nextval,会返回下一个自增值
+--  每次调用都会消耗掉一个id值，多条数据插入values(nextval),(nextval)不合法，插入失败
 create sequence APP_SECKILL_ID
 minvalue 1
 maxvalue 9999999
@@ -19,7 +20,7 @@ nocache;
 
 [引用地址](https://www.cnblogs.com/bbliutao/archive/2017/11/08/7804263.html)
 
-### 日期函数
+### 字符串函数
 
 ```sql
 -- 字符串
@@ -61,11 +62,13 @@ count(colnumName)
 sum(colnumName)
 --  返回指定行的平均值
 avg(colnumName)
+min(colnumName)
+max(colnumName)
 ```
 
 ## 条件判断
 
-### when then else end
+### case when then else end
 
 ```sql
 --简单Case函数
@@ -103,4 +106,48 @@ if a=... then
 elsif a=... then    --这里是elsif，不是else if.
 ...
 end if;
+```
+
+```sql
+create table test(month int ,day int ,cnt int);
+insert into test(month,day,cnt) values(1,1,1),(1,1,4),(2,5,2),(2,3,4),(2,3,1);
+select ifnull(month,'总数'),ifnull(day,''),sum(month) from test group by month,day with rollup;
+```
+
+## 横竖表转变
+
+```sql
+-- 竖表边横表
+create table scores(
+  user varchar(15) not null,
+  subjects varchar(10) not null,
+  score int(3) not null
+);
+
+insert into scores values('ltw','math',98),('ltw','english',80),('ltw','yw',78),
+('cs','math',77),('cs','english',88),('cs','yw',73)
+
+-- case语句选出需要的列 group by 分组，max选出可用的值
+select
+  r.user,
+  max(case r.subjects when 'math' then r.score else 0 end) 'math',
+  max(case r.subjects when 'english' then r.score else 0 end) 'english',
+  max(case r.subjects when 'yw' then r.score else 0 end) 'yw'
+  from scores r group by r.user;
+
+-- 横表转竖表
+create table scores(
+  user varchar(16) not null,
+  math int null,
+  english int null,
+  yw int null
+);
+
+insert into scores values('ltw',99,98,97),('cc',88,87,85);
+
+--  选取需要的列union即可
+select m.user ,'math' as 'math',m.math score from scores m
+union select e.user ,'english' as 'english',e.english score from scores e
+union select y.user ,'yw' as 'yw',y.yw score from scores y
+order by user;
 ```

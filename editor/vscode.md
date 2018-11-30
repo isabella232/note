@@ -6,7 +6,7 @@
 
 ## plugins
 
-+ markdown
-+ vue
-+ format
-+ npm
+- markdown
+- vue
+- format
+- npm
