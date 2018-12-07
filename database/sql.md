@@ -30,6 +30,8 @@
 10. ORDER BY: 将虚拟表 VT9 中的记录按照<order_by_list>进行排序操作，产生虚拟表 VT10.
 11. LIMIT：取出指定行的记录，产生虚拟表 VT11, 并将结果返回。
 
+## 驱动表的选择
+
 ## 视图
 
 一个虚拟表，没有正式存在，不能做操作，除非是一对一的表。当查询语句过于复杂，又在多出有引用，则可以考虑使用视图来简化操作。
@@ -172,7 +174,7 @@ order by column_1 [,column_2...] [asc|desc][nulls first|nulls last]
 
 右表全部选出，左表符合条件的选出
 
-### 结果接的连接
+### 结果集的连接
 
 > union
 
@@ -278,3 +280,41 @@ Select null,null,null,sum(E) from test;
 
 grouping sets 就是对参数中的每个参数做 grouping，也就是有几个参数做几次 grouping,例如使用 group by grouping sets(A,B,C)，则对(A),(B),(C)进行 group by，如果使用 group by grouping sets((A,B),C),则对(A,B),(C)进行 group by。甚至 grouping by grouping set(A,A)都是语法允许的，也就是对(A)进行 2 次 group by,grouping sets 的参数允许重复
 
+
+## 横竖表转变
+
+```sql
+-- 竖表边横表
+create table scores(
+  user varchar(15) not null,
+  subjects varchar(10) not null,
+  score int(3) not null
+);
+
+insert into scores values('ltw','math',98),('ltw','english',80),('ltw','yw',78),
+('cs','math',77),('cs','english',88),('cs','yw',73)
+
+-- case语句选出需要的列 group by 分组，max选出可用的值
+select
+  r.user,
+  max(case r.subjects when 'math' then r.score else 0 end) 'math',
+  max(case r.subjects when 'english' then r.score else 0 end) 'english',
+  max(case r.subjects when 'yw' then r.score else 0 end) 'yw'
+  from scores r group by r.user;
+
+-- 横表转竖表
+create table scores(
+  user varchar(16) not null,
+  math int null,
+  english int null,
+  yw int null
+);
+
+insert into scores values('ltw',99,98,97),('cc',88,87,85);
+
+--  选取需要的列union即可
+select m.user ,'math' as 'math',m.math score from scores m
+union select e.user ,'english' as 'english',e.english score from scores e
+union select y.user ,'yw' as 'yw',y.yw score from scores y
+order by user;
+```

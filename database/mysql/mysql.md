@@ -297,12 +297,6 @@ expr格式化的形式：INTERVAL str FORMATTER
 - case var0 when var1 then var2 ... else var3 end
   - 把var0的值依次和后面的值比较，如果i结果为true返回then的值
 
-```sql
-create table user(
-  id int unsigned auto_increment primary key,
-  sex tinyint unsigned
-)
+## 更新注意点
 
-select if(u.sex==1,'男','女') sex from user;
-select (case u.sex when '1' then '男' when '0' then '女' else '保密' end) from user;
-```
+[升级5.7注意点](https://www.jb51.net/article/143449.htm)

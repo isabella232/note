@@ -1,5 +1,9 @@
 # nginx
 
+(zh-cn-doc)[http://shouce.jb51.net/nginx/left.html];
+(zh-cn-doc2)[http://tengine.taobao.org/book/index.html];
+(en-doc)[http://www.nginx.org]
+
 ## 命令行操作 nginx
 
 > 为啥要导航到 nginx 的安装目录才能生效？
