@@ -1,6 +1,8 @@
-# git语法简要
+# git 语法简要
 
-## git本地仓库
+[document](https://git-scm.com/book/zh/v2)
+
+## git 本地仓库
 
 ### 初始化本地仓库
 
@@ -10,14 +12,14 @@ git init    //初始化一个本地git仓库
 
 ### 添加记录到暂存区
 
- ```git
- git add file   //添加单条记录记录
- git add *      //添加全部修改的记录
- ```
+```git
+git add file   //添加单条记录记录
+git add *      //添加全部修改的记录
+```
 
 ### 提交记录到版本库
 
-==此处操作版本库生成一个版本id== 【commitid】
+==此处操作版本库生成一个版本 id== 【commitid】
 
 ```git
 git commit -m 'the message'  // -m 为此次提交的记录信息
@@ -66,7 +68,8 @@ git checkout -- file  //恢复到删除前的工作区
 
 ### 添加远程仓库
 
-a. 在github上创建一个新的项目，生成一个项目地址
+a. 在 github 上创建一个新的项目，生成一个项目地址
+
 > 项目地址【https://github.com/ltw9527/git】
 
 b. 在本地仓库下运行命令
@@ -83,21 +86,21 @@ git push -u origin master
 
 #### Permission denied (publickey).
 
-> 这是因为ssh 可以过期或者没有ssh key，需要重新生成一个ssh key 放在github账户上
+> 这是因为 ssh 可以过期或者没有 ssh key，需要重新生成一个 ssh key 放在 github 账户上
 
-1. 查找本地是否有ssh的文件
-    1. id_rsa.pub里面的字符拷贝到github里面的setting的ssh里面
+1. 查找本地是否有 ssh 的文件
+   1. id_rsa.pub 里面的字符拷贝到 github 里面的 setting 的 ssh 里面
 2. 本地没有这个文件，需要新建一个
 
 #### Threre is no tracking information for the current branch . Please specify which branch you want to merge with
 
-> 这是因为需要指定本地仓库的分支，跟远程仓库项目分支的关系，如果我们需要本地的master对应远程的master,指定了之后就可以使用了
+> 这是因为需要指定本地仓库的分支，跟远程仓库项目分支的关系，如果我们需要本地的 master 对应远程的 master,指定了之后就可以使用了
 
 ```git
 git branch --set-upstream-to=origin/master master
 
 //  如果是别人的远程仓库，需要先pull，并且把meger的原因说上
-git pull   
+git pull
 
 //  linux 操作指令
 i  insert
@@ -122,11 +125,11 @@ Please, commit your changes or stash them before you can merge.
 Aborting
 ```
 
-> 针对上面的问题，需要先commit或者隐藏掉本地的修改，才可以git pull最新的version。当commit之后，git pull，会自动的合并，并且本地的修改和关联库的修改都会体现
+> 针对上面的问题，需要先 commit 或者隐藏掉本地的修改，才可以 git pull 最新的 version。当 commit 之后，git pull，会自动的合并，并且本地的修改和关联库的修改都会体现
 
 ### unable to auto-detect email address
 
-> 找到config文件加入
+> 找到 config 文件加入
 
 ```git
 [user]

@@ -58,3 +58,26 @@
 - JSON_KEY(jsonObj,path,key)
   - [3, {"a": [5, 6], "b": 10}, [99, 100]]
   - path='\$[0]',key='a',value=[5,6]
+
+## 时间
+
+> DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+> 默认为当前时间，更新刷新时间
+
+- date
+  - yyyy-MM-dd
+- datetime
+  - yyyy-MM-dd hh:mm:ss
+- timestamp
+  - yyyyMMddhhmmssS
+
+### 时间函数
+
+- curdate()
+  - yyyy-MM-dd
+- curtime()
+  - hh:mm:ss
+- current_timestamp
+  - yyyy-MM-dd hh:mm:ss
+- now()
+  - yyyy-MM-dd hh:mm:ss

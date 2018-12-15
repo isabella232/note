@@ -23,6 +23,7 @@
 ## 事件绑定
 
 > 默认组件方法不绑定 this，方法里面访问 this 为 undefined，并且如果需要传递参数，则事件对象作为最后一个参数传给方法
+> react 内部使用的是事件池，如果退出当前事件的回调，事件对象会被放回事件池，如果外部对象持有事件对象的引用，可能会出现补课预支的问题，如果确实需要引用事件对象，可以调用事件对象的 persist()方法让事件对象脱离事件池。
 
 ```javascript
 //  in render func
@@ -203,10 +204,6 @@ getUserConfirmation = (message, callback) => {
 };
 ```
 
-### react-transition-group
-
-> react-router 的路由转换动画组件
-
 ## react-redux
 
 ### redux
@@ -237,40 +234,3 @@ getUserConfirmation = (message, callback) => {
 1. 注入 state 和 action 到组件
 1. connect(function(state){return {state:state}},{addAction})(componentName)
 1. 注入到组件的 props 属性上
-
-## react-motion
-
-> react 动画组件
-
-### spring
-
-- spring: (val: number, config?: SpringHelperConfig) => OpaqueConfig
-  - number 期望值
-  - config 配置项
-    - stiffness 刚性 值越大 刚醒越大
-    - damping 振幅 值越大幅度越小
-    - precision 精度值
-
-### presets
-
-```javascript
-export default {
-  noWobble: { stiffness: 170, damping: 26 }, // the default, if nothing provided
-  gentle: { stiffness: 120, damping: 14 }, // 缓和
-  wobbly: { stiffness: 180, damping: 12 }, //
-  stiff: { stiffness: 210, damping: 20 }
-};
-```
-
-### Motion
-
-- style
-- defaultStyle:?
-- children
-- onRest:?
-
-### StaggeredMotion
-
-### TransitionMotion
-
-## react-transition-group

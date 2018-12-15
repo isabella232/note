@@ -27,6 +27,8 @@ nginx -s[signal] command
 
 ## events
 
+## upstream
+
 ## http
 
 ### server
@@ -51,17 +53,27 @@ nginx -s[signal] command
 
 > 内置配置
 > 注意绝对路径的相对路径。/开头为绝对路径，会以当前的盘为根目录。
+> 路径以/结尾会替换掉 location 匹配的 uri，结尾没有/，会把 location 匹配的 uri 链接到路径
 
 - root
   - root + uri 目录下搜索资源
-  - location /food { root /static/images/ }
+  - location /food ;;; root = /static/images/
     - http://localhost/food
     - 上面的地址会导航到 http://localhost/static/images/food 目录下去搜索资源
 - alias
   - 会把 alias 字段替换为 uri 去搜索资源
-  - location /food { alias /static/images }
+  - location /food ;;; alias = /static/images
     - http://localhost/food
     - 上面的地址会导航到 http://localhost/static/images 目录下去搜索资源
+
+## 变量
+
+[全局可用变量](http://nginx.org/en/docs/varindex.html)
+
+> 常用变量
+
+- \$content_length
+  - 文档长度
 
 ## NOTE
 

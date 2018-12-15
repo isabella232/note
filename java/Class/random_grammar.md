@@ -1,8 +1,8 @@
-# Random的使用
+# Random 的使用
 
-## random分为两种
+## random 分为两种
 
-### java.lang.math.random中的
+### java.lang.math.random 中的
 
 ```java
 //  使用
@@ -14,7 +14,7 @@ public static int getRandom(int len){
 }
 ```
 
-### java.lang.util.Random中的
+### java.lang.util.Random 中的
 
 1. 该方法是一个伪随机的随即算法，根据一定的规则生成随机数，基于给定的种子数，生成给定区间的伪随机数。
 2. 生成的随机数在区间内近似均匀分布，也就是每个数字出现的几率相同。
@@ -27,7 +27,7 @@ public static int getRandom(int len){
 //  系统时间作为种子
 Random random=new Random();
 
-//  参数wielong型的种子；如果两次种子一样 ，那么生成的随机数是一样的；
+//  参数为long型的种子；如果两次种子一样 ，那么生成的随机数是一样的；
 //  种子只和随机数生成的规律有关，跟范围无关，范围是由 random1.nextInt(30);
 //  这个30才是决定范围的 和Math.random()一样是 左闭又开的；
 Random random1=new Random(20);
