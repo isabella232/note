@@ -5,6 +5,7 @@
 ### 下载
 
 [【maven 下载地址】http://maven.apache.org/download.cgi#](http://maven.apache.org/download.cgi#)
+
 [【依赖包下载地址】http://mvnrepository.com/](http://mvnrepository.com/)
 
 ### 安装
@@ -27,14 +28,23 @@
 <localRepository>D:\m2repository</localRepository>
 
 <!-- 镜像 -->
-<mirror>
-    <id>mirrorId</id>
-    <mirrorOf>repositoryId</mirrorOf>
-    <name>Human Readable Name for this Mirror.</name>
-    <url>http://my.repository.com/repo/path</url>
-</mirror>
+<!-- 阿里云 -->
+<mirrors>
+    <mirror>
+      <id>alimaven</id>
+      <name>aliyun maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <mirrorOf>central</mirrorOf>
+    </mirror>
+</mirrors>
 ```
 
 ### maven 项目
 
 > 需要自己新建一个 xml 文件，配置文件在隔壁
+
+## 仓库的概念
+
+### 远程仓库
+
+### 本地仓库

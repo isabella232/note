@@ -113,20 +113,20 @@ archive file，然后 finish.你就可以在 zip 文件里看到生成好的 jar
 这是由于你的 Maven 编译级别是 jdk1.5 或以下，而你导入了 jdk1.6 以上的依赖包。解决办法：使用 maven-compiler-plugin 将 maven 编译级别改为 jdk1.6 以上,update maven：
 
 ```xml
-<build>  
-    <plugins>  
-        <!-- define the project compile level -->  
-        <plugin>  
-            <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <version>2.3.2</version>  
-            <configuration>  
-                <source>1.7</source>  
-                <target>1.7</target>  
-            </configuration>  
-        </plugin>  
-    </plugins>  
-</build>  
+<build>
+    <plugins>
+        <!-- define the project compile level -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>2.3.2</version>
+            <configuration>
+                <source>1.7</source>
+                <target>1.7</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 ## 快速生成 java bean 的 getter setter 方法
@@ -162,3 +162,25 @@ archive file，然后 finish.你就可以在 zip 文件里看到生成好的 jar
 		</plugins>
 	</build>
 ```
+
+## java.lang.UnsupportedClassVersionError: org/apache/commons/logging/LogFactoryService : Unsupported major.minor version 52.0 (unable to load class org.apache.commons.logging.LogFactoryService)
+
+[https://www.cnblogs.com/pangxiansheng/p/5426905.html](https://www.cnblogs.com/pangxiansheng/p/5426905.html).
+
+- build path 的 JDK 版本是你开发的时候编译器需要使用到的，就是你在 eclipse 中开发代码，给你提示报错的，编译的过程；
+- java compiler compliance level 中配置的编译版本号，这个编译版本号的作用是，你这个项目将来开发完毕之后，要放到服务器上运行，那个服务器上 JDK 的运行版本。
+
+在 eclipse 中进行开发的时候，build path 中 JDK 进行类库的编译（就是你使用类在不在这个 JDK 中),java compiler compliance level 是对这个项目语法的编译（就是你的项目中语法的正确与否），在开发的过程中，这两个地方是都起作用的。所以说，build path 和 java complier compliance level 和服务器配置的 JDK 保持一致，就不会出现任何问题的。
+
+stanford parser 和 jdk 版本对应关系
+Java SE 11 = 55,
+Java SE 10 = 54,
+Java SE 9 = 53,
+Java SE 8 = 52,
+Java SE 7 = 51,
+Java SE 6.0 = 50,
+Java SE 5.0 = 49,
+JDK 1.4 = 48,
+JDK 1.3 = 47,
+JDK 1.2 = 46,
+JDK 1.1 = 45
