@@ -3,44 +3,31 @@
 Servlet 运行于支持 Java 的应用服务器中（tomcat）。从原理上讲，Servlet 可以响应任何类型的请求，但绝大多数情况下 Servlet 只用来扩展基于 HTTP 协议的 Web 服务器。实现一个 servlet 一般可以通过三种方式：
 
 1.  实现 Servlet 接口
-1.  继承 GenericServlet 类
-1.  继承 HttpServlet 类其中以继承 HttpServlet 类最常见，因为它提供了常用的 http 请求方法，如 doGet，doPost 等方法。创建一个 tomcat 容器的 servlet 应用如下：
+2.  继承 GenericServlet 类
+3.  继承 HttpServlet 类其中以继承 HttpServlet 类最常见，因为它提供了常用的 http 请求方法，如 doGet，doPost 等方法
+
+创建一个 tomcat 容器的 servlet 应用如下：
+
 1.  创建一个工程目录
-1.  创建一个 Servlet 类
-1.  编译 Servlet 类
-1.  创建一个部署服务
-1.  启动服务器并且部署项目
-1.  访问该 Servlet
-    servlet 实例的距离工作流程：
-1.  如果是第一次访问 servlet 实例
+2.  创建一个 Servlet 类
+3.  编译 Servlet 类
+4.  创建一个部署服务
+5.  启动服务器并且部署项目
+6.  访问该 Servlet
 
-- 加载 servlet 类
-- 实例化该类
-- 调用 init()方法，并且把 servletConfig 对象作为参数传进去
+servlet 实例的工作流程：
 
-2.  如果不是第一次访问
-1.  直接调用 servlet 的 service 方法，并且把组装好的 request 对象和 response 对象作为参数传进去
+1. 如果是第一次访问 servlet 实例
+2. 加载 servlet 类
+3. 实例化该类
+4. 调用 init()方法，并且把 servletConfig 对象作为参数传进去
+5. 如果不是第一次访问
+6. 直接调用 servlet 的 service 方法，并且把组装好的 request 对象和 response 对象作为参数传进去
 
 ## 注意点
 
 1.  要是 xml 和注解都配置了，会优先使用注解的配置
 2.  url 大小写的问题--会区分
-
-## 问题
-
-- 不知道为什么在 web.xml 里面配置 servlet 出现 404，用注解就可以。 ------2018-04-26
-- 在浏览器里面执行 get 方法 会调用两次 servlet 一次是 option 请求一次是其他 get，post 请求--，尝试用其他调试工具--postman 谷歌扩展工具
-- mysql The server time zone value 异常
-
-> url=jdbc:mysql://localhost:3306/test?useUnicode=true$characterEncoding=utf8
-> 改为
-> url=jdbc:mysql://localhost:3306/test?serverTimezone=UTC
-
-- Java 连接 Mysql 数据库警告：Establishing SSL connection without server's identity verification is not recommend
-
-> 原因是 MySQL 在高版本需要指明是否进行 SSL
-> 连接在 mysql 连接字符串 url 中加入 ssl=true 或者 false 即可，如下所示。
-> url=jdbc:mysql://127.0.0.1:3306/framework?characterEncoding=utf8&useSSL=true
 
 ## servlet 的生命周期
 
@@ -50,29 +37,7 @@ Servlet 运行于支持 Java 的应用服务器中（tomcat）。从原理上讲
 - 每次请求过来都会执行 service 方法
 - 销毁的时候执行 destroy 方法
 
-## web.xml 文件
-
-### welcome-file-list 标签
-
-是 web-app 的子元素，它的直接子元素是 welcome-file 用来定义应用首页的（如果我们没有指定的访问资源）,如果没有指定该资源，则首页显示 404
-
-```xml
-<web-app>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-  </welcome-file-list>
-
-  <servlet>  
-    <servlet-name>servlet1</servlet-name>  
-    <servlet-class>com.javatpoint.FirstServlet</servlet-class>  
-    <!-- 预加载 部署的时候直接加载的servlet 大小为加载顺序 -->
-    <load-on-startup>0</load-on-startup>  
-  </servlet>
-</web-app>
-```
-
-## exlipse 部署 servlet（不用 maven 部署）
+## eclipse 部署 servlet（不用 maven 部署）
 
 ### 需要先配置 tomcat
 
@@ -135,3 +100,19 @@ http 的连接无状态性，因此无法识别请求的用户。
 
 - 去数据库官网下载对应的驱动
 - 把驱动导入到包里即可
+
+## 问题
+
+- 不知道为什么在 web.xml 里面配置 servlet 出现 404，用注解就可以。 ------2018-04-26
+- 在浏览器里面执行 get 方法 会调用两次 servlet 一次是 option 请求一次是其他 get，post 请求--，尝试用其他调试工具--postman 谷歌扩展工具
+- mysql The server time zone value 异常
+
+> url=jdbc:mysql://localhost:3306/test?useUnicode=true\$characterEncoding=utf8
+> 改为
+> url=jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+
+- Java 连接 Mysql 数据库警告：Establishing SSL connection without server's identity verification is not recommend
+
+> 原因是 MySQL 在高版本需要指明是否进行 SSL
+> 连接在 mysql 连接字符串 url 中加入 ssl=true 或者 false 即可，如下所示。
+> url=jdbc:mysql://127.0.0.1:3306/framework?characterEncoding=utf8&useSSL=true

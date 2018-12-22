@@ -318,3 +318,7 @@ union select e.user ,'english' as 'english',e.english score from scores e
 union select y.user ,'yw' as 'yw',y.yw score from scores y
 order by user;
 ```
+
+## 子查询
+
+1. 外层查询条件只能嵌套第一层
