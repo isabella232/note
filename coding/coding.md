@@ -53,6 +53,28 @@ unicode在很长一段时间内无法推广，直到互联网的出现，为解�
 
 ## Unicode
 
+[维基百科](https://en.wikipedia.org/wiki/Unicode)。Unicode 是国际组织制定的可以容纳世界上所有文字和符号的字符编码方案。目前的 Unicode 字符分为 17 组编排，0x0000 至 0x10FFFF，每组称为平面（Plane），而每平面拥有 65536 个码位，共 1114112 个。
+
+0x0000-0xffff 常用平面(BMP)
+0x010000-0x01ffff 辅助多语言平面(SMP)
+0x020000-0x02ffff 辅助中文平面(SIP)...
+0x030000-0x03ffff 
+0x040000-0x04ffff
+0x050000-0x05ffff
+0x060000-0x06ffff
+0x070000-0x07ffff
+0x080000-0x08ffff
+0x090000-0x09ffff
+0x0A0000-0x0Affff
+0x0B0000-0x0Bffff
+0x0C0000-0x0Cffff
+0x0D0000-0x0Dffff 
+0x0E0000-0x0Effff SSP
+0x0F0000-0x0Fffff 私有平面
+0x100000-0x10ffff 私有平面
+（其他为未定义平面）
+
+
 ## hex编码
 
 Hex就是16进制，本质上是将字节数组转化为16进制，然后用字符串的形式表现出来。一个8bit的数据，也就是（xxxx xxxx）,每4个bit可以转化为一个16进制表示，也就是8个bit会转化为（00-ff）之间的16进制数字。
