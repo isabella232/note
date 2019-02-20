@@ -36,6 +36,8 @@ Vue.prototype = {
   $nextTick: function(fn) {}
 };
 
+//  Vue
+
 /**
  * 设置响应式data，主要依赖三个类
  * Watcher,Dep,Observe
@@ -50,16 +52,70 @@ function Watch(vm,expOrFn,cb,options,isRenderWatcher){}
 
 /**
  * Watcher存储类
+ * 是一个可以有多个的可观察对象指令订阅它。
  * @api addSub 添加Watcher
  * @api removeSub 移出Watcher
  * @api notify 通知所有Watcher
  * @api depend
  * */
-let uid=0;  // 统计数量
-function Dep(){
-  this.id = ++uid // 当前id值
-  this.subs = []  //  存放Watch的数组
-}
+  var uid = 0;
+
+  /**
+   * A dep is an observable that can have multiple
+   * directives subscribing to it.
+   */
+  function remove(arr, item) {
+    if (arr.length) {
+      var index = arr.indexOf(item);
+      if (index > -1) {
+        return arr.splice(index, 1);
+      }
+    }
+  }
+
+   // 正在评估的当前目标观察者。
+   // 这是全局唯一的，因为可能只有一个
+   // 观察者随时被评估。
+  Dep.target = null;
+  var targetStack = [];
+
+  function pushTarget(_target) {
+    if (Dep.target) {
+      targetStack.push(Dep.target);
+    }
+    Dep.target = _target;
+  }
+
+  function popTarget() {
+    Dep.target = targetStack.pop();
+  }
+
+  var Dep = function Dep() {
+    this.id = uid++;
+    this.subs = [];
+  };
+
+  Dep.prototype.addSub = function addSub(sub) {
+    this.subs.push(sub);
+  };
+
+  Dep.prototype.removeSub = function removeSub(sub) {
+    remove(this.subs, sub);
+  };
+
+  Dep.prototype.depend = function depend() {
+    if (Dep.target) {
+      Dep.target.addDep(this);
+    }
+  };
+
+  Dep.prototype.notify = function notify() {
+    // stabilize the subscriber list first
+    var subs = this.subs.slice();
+    for (var i = 0, l = subs.length; i < l; i++) {
+      subs[i].update();
+    }
+  };
 
 /**
  * 对象/数组设置响应式实现类
@@ -93,7 +149,7 @@ function Observe(){}
  * */
 Vue.prototype.$mount = function() {
   //  ...
-};
+}
 
 function mountComponent(vm, el, hydrating) {
   // ...

@@ -69,6 +69,14 @@ tomcat 的配置步骤
 
 当查看源码的时候，出现 source 的问题。可能是反编译的问题，参考网上的方法如下：
 
+方法 1：
+
+1. help->eclipse MarketPlace
+2. 搜索关键字[DeComplier]
+3. 安装最多人装的，配置 file 关联
+
+方法 2：
+
 - 下载 jad
   - http://varaneckas.com/jad/
 - 下载 jadeclipse 插件
