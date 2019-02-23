@@ -42,14 +42,14 @@ module.exports = {
   - 目标输出目录 path 的绝对路径。
 
 ```javascript
-const path = require('path');
+const path = require('path')
 module.exports = {
   entry: '',
   output: {
     filename: '[name].bundle.js', //  name　对应entry object key
     path: path.resolve(__dirname, '/dist')
   }
-};
+}
 ```
 
 > module
@@ -83,6 +83,10 @@ module.exports = {
 };
 ```
 
+==tip==
+
+1. 模块的解析规则是从右到左解析的，所以类似 css 的预处理器，需要放在最右边，最先解析
+
 ## 开发环境的配置需求
 
 ### source-map
@@ -92,7 +96,7 @@ module.exports = {
 ```javascript
 module.exports = {
   devtool: 'inline-source-map'
-};
+}
 ```
 
 ### 观察模式
@@ -110,6 +114,7 @@ npm install --save-dev webpack-dev-server
 
 ```javascript
 //  webpack.config.js 配置
+//  配合webpack.HotModuleReplacementPlugin使用
 //  package.json文件　--参数    --open --config configPath
 module.exports = {
   devServer: {
@@ -118,12 +123,12 @@ module.exports = {
     hot: true, //  热加载
     open: true //   是否打开浏览器
   }
-};
+}
 
 //  package.json 配置
 json = {
   dev: 'webpack-dev-server --config ./config/webpack.dev.conf.js'
-};
+}
 ```
 
 ### 热模块替换
@@ -131,9 +136,10 @@ json = {
 模块热替换(Hot Module Replacement 或 HMR)是 webpack 提供的最有用的功能之一。它允许在运行时更新各种模块，而无需进行完全刷新
 
 ```javascript
+const webpack=require('webpack)
 module.exports = {
   plugins: [new webpack.HotModuleReplacementPlugin()]
-};
+}
 ```
 
 ## 生产环境配置
@@ -177,7 +183,7 @@ module.exports = {
       }
     }
   }
-};
+}
 ```
 
 ## 脚本

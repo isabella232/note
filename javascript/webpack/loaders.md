@@ -21,7 +21,7 @@ module.exports = {
       }
     ]
   }
-};
+}
 ```
 
 ### style-loader
@@ -66,7 +66,7 @@ module.exports = {
       }
     ]
   }
-};
+}
 ```
 
 ### styus-loader
@@ -84,3 +84,24 @@ npm install -g stylus
 ##　文件相关
 
 ### file-loader
+
+### raw-loader
+
+利用 raw-loader 可以实现 html 的热更新。
+
+```javascript
+//  配置文件中
+module.expors = {
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: 'raw-loader'
+      }
+    ]
+  }
+}
+
+//  在入口文件引入html文件，让devServer监控html文件的改动
+import '../test.html'
+```

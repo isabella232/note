@@ -4,6 +4,31 @@
 - [循环](#循环)
 - [插槽](#插槽)
 
+## 全局配置
+
+### 自定义选项合并策略
+
+重新定义 Vue 继承链的重名选项的覆盖规则
+
+```javascript
+Vue.options._my_option = 16
+Vue.config.optionMergeStrategies._my_option = function(parent, child, vm) {
+  return child + 1 + parent
+}
+
+const Profile = Vue.extend({
+  _my_option: 1
+})
+
+// Profile.options._my_option = 2
+
+const vm = new Profile({
+  _my_option: 22
+})
+
+//  vm.$options._my_option=23
+```
+
 ## 生命周期
 
 ```javascript {.line-numbers}
@@ -34,7 +59,7 @@ const component = {
   destroyed() {
     //  组件卸载完成
   }
-};
+}
 ```
 
 ## 数据侦测
@@ -45,7 +70,7 @@ const component = {
  * @param cb 当值干煸时候的回调函数
  * @param options 附加参数 deep/immediate
  * */
-vm.$watch(expOrfn, cb, options);
+vm.$watch(expOrfn, cb, options)
 
 component = {
   computed: {
@@ -58,7 +83,7 @@ component = {
     },
     key3: [] //  如果是数组 [Object]==key2 [String]==key1
   }
-};
+}
 ```
 
 ## 循环
@@ -74,19 +99,19 @@ component = {
 
 ```javascript
 // 变异方法，调用以下方法会同步更新视图
-push();
-pop();
-shift();
-unshift();
-splice();
-sort();
-reverse();
+push()
+pop()
+shift()
+unshift()
+splice()
+sort()
+reverse()
 
 //  非变异方法 slice concat filter map 返回一个新数组，可以使之替换旧的数据实现数据更新
 //  你可能认为这将导致 Vue 丢弃现有 DOM 并重新渲染整个列表。幸运的是，事实并非如此。Vue 为了使得 DOM 元素得到最大范围的重用而实现了一些智能的、启发式的方法，所以用一个含有相同元素的数组去替换原来的数组是非常高效的操作。
 example1.items = example1.items.filter(function(item) {
-  return item.message.match(/Foo/);
-});
+  return item.message.match(/Foo/)
+})
 
 //  更新
 //  当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue
@@ -94,13 +119,13 @@ example1.items = example1.items.filter(function(item) {
 //  数组没有检查数据变更的方法，无法发布订阅通知
 
 // Vue.set
-Vue.set(vm.items, indexOfItem, newValue);
-vm.items.splice(indexOfItem, 1, newValue);
-vm.$set(vm.items, indexOfItem, newValue);
-vm.$set(vm.obj, key, value);
+Vue.set(vm.items, indexOfItem, newValue)
+vm.items.splice(indexOfItem, 1, newValue)
+vm.$set(vm.items, indexOfItem, newValue)
+vm.$set(vm.obj, key, value)
 
 //  清空Array
-vm.items.splice(newLength);
+vm.items.splice(newLength)
 ```
 
 > key
